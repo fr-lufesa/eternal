@@ -1,0 +1,56 @@
+<div class="header" style="padding: 1rem">
+  <input type="checkbox" id="menu-toggle" />
+
+  <label for="menu-toggle" class="menu-btn">
+    <span class="line1"></span>
+    <span class="line2"></span>
+    <span class="line3"></span>
+  </label>
+
+  <nav>
+    <ul>
+      @for (option of options; track $index) {
+      <li>
+        <a [href]="'#' + option"> {{ option }}</a>
+      </li>
+      }
+    </ul>
+  </nav>
+
+  <label for="menu-toggle" class="overlay"></label>
+  <app-cart></app-cart>
+</div>
+
+<div class="main" class="title" style="padding: 1rem">
+  <h1 id="inicio">ETE<span class="reverse-letter">R</span>NAL</h1>
+  <p>Crafted for the ones who rise above.</p>
+  <div class="swiper mySwiper" #swiperRef>
+    <h4>Featured Collection</h4>
+    <div class="swiper-wrapper">
+      @for (item of items; track $index) {
+      <div class="swiper-slide" (click)="openDetail(item)">
+        <div class="slide-card">
+          <img [src]="item.img" alt="" />
+          <p>{{ item.name }}</p>
+          <span>{{ item.price | currency : "MXN" }}</span>
+        </div>
+      </div>
+      }
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+
+  <hr size="1px" color="#121212" />
+  <div class="footer">
+    <div class="nav">
+      <a href="">Contact</a>
+      <a href="">Shipping</a>
+      <a href="">Returns</a>
+    </div>
+    <div class="social-media">
+      <i class="fa-brands fa-instagram"></i>
+      <i class="fa-brands fa-x-twitter"></i>
+    </div>
+    <p>© 2025 Eternal. All rights reserved.</p>
+  </div>
+</div>

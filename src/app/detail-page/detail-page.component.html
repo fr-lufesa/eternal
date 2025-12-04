@@ -1,0 +1,17 @@
+<div class="header">
+  <div class="back-button" (click)="goBack()">
+    <i class="fa-solid fa-arrow-left"></i>
+  </div>
+  <h2>ETERNAL</h2>
+  <app-cart></app-cart>
+</div>
+<img [src]="item.img" alt="" style="width: 100%;">
+<div class="content">
+    <h1>{{ item.name }}</h1>
+    <p>{{ item.price | currency }}</p>
+
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quod quia necessitatibus nisi, amet nostrum architecto harum similique tempore vero hic non dicta sequi numquam dolor aperiam magni labore pariatur!</p>
+
+    <button>ADD TO BAG</button>
+</div>
+<hr size="2px" color="#121212" style="margin-top: 1rem;">
