@@ -1,64 +1,46 @@
 import { AfterViewInit, Component, ElementRef, inject, ViewChild } from '@angular/core';
-import { Item } from './models/item.model';
+import { Product, ProductsResponse } from './models/item.model';
 import { CurrencyPipe } from '@angular/common';
 
 import Swiper from 'swiper';
 import { Pagination } from 'swiper/modules';
-import { Router } from '@angular/router';
-import { CartComponent } from "../cart/cart.component";
+import { Router, RouterLink } from '@angular/router';
+import { ProductsService } from '../services/products.service';
 
 @Component({
   selector: 'app-home-page',
-  imports: [CurrencyPipe, CartComponent],
+  imports: [CurrencyPipe, RouterLink],
   standalone: true,
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
 })
 export class HomePageComponent implements AfterViewInit {
   @ViewChild('swiperRef') swiperRef!: ElementRef;
+  private router = inject(Router);
+  private productsService = inject(ProductsService);
 
   swiper!: Swiper;
 
-  items: Item[] = [
-    {
-      id: 1,
-      img: 'img/cap_1.png',
-      name: 'Gorra 1',
-      price: 23.6,
-    },
-    {
-      id: 2,
-      img: 'img/cap_2.png',
-      name: 'Gorra 2',
-      price: 23.6,
-    },
-    {
-      id: 3,
-      img: 'img/cap_2.png',
-      name: 'Gorra 3',
-      price: 23.6,
-    },
-  ];
+  products: Product[] = this.productsService.products();
 
   options = ['Inicio', 'Servicios', 'Nosotros', 'Contacto'];
 
-  private router = inject(Router);
 
   ngAfterViewInit(): void {
     this.swiper = new Swiper(this.swiperRef.nativeElement, {
       modules: [Pagination],
       slidesPerView: 2,
-      spaceBetween: 30,
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
+      spaceBetween: 20,
+      // pagination: {
+      //   el: '.swiper-pagination',
+      //   clickable: true,
+      // },
     });
   }
 
-  openDetail(item: Item) {
+  openDetail(product: Product) {
     this.router.navigate(['detail'], {
-      state: { item }
+      state: { product }
     }); 
   }
 }

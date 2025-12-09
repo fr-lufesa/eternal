@@ -1,25 +1,28 @@
-import { Component, inject } from '@angular/core';
-import { Item } from '../home-page/models/item.model';
-import { CartComponent } from "../cart/cart.component";
-import { CurrencyPipe, Location } from '@angular/common';
+import { Component, ElementRef, inject, ViewChild } from "@angular/core";
+import { Product } from "../home-page/models/item.model";
+import { CurrencyPipe, Location } from "@angular/common";
 
 @Component({
-  selector: 'app-detail-page',
-  imports: [CartComponent, CurrencyPipe],
-  templateUrl: './detail-page.component.html',
-  styleUrl: './detail-page.component.scss',
+  selector: "app-detail-page",
+  imports: [CurrencyPipe],
+  templateUrl: "./detail-page.component.html",
+  styleUrl: "./detail-page.component.scss",
 })
 export default class DetailPageComponent {
-  item!: Item;
+  @ViewChild("content")
+  content!: ElementRef<HTMLInputElement>;
+
+  product!: Product;
 
   private location = inject(Location);
 
   ngOnInit() {
-    const { item } = history.state;
-    this.item = item;    
+    const { product } = history.state;
+    this.product = product;
+    // this.content.nativeElement.innerHTML = this.product.body_html;
   }
 
-  goBack(){
+  goBack() {
     this.location.back();
   }
 }

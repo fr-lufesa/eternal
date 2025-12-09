@@ -13,6 +13,10 @@
   letter-spacing: 2px;
 }
 
+#inicio{
+  font-size: 4rem;
+}
+
 /* --- HAMBURGER --- */
 #menu-toggle {
   display: none;
@@ -51,6 +55,8 @@ nav ul {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  background-color: #111;
+
 }
 
 nav a {
@@ -96,7 +102,7 @@ nav a {
 }
 
 .title {
-  margin-top: 5rem;
+  margin-top: 3rem;
   text-align: center;
 
   h1 {
@@ -165,51 +171,22 @@ hr {
   }
 }
 
-/* --- Versión escritorio --- */
-@media (min-width: 768px) {
-  .header {
-    padding-inline: 3rem;
-  }
-
-  .menu-btn {
-    display: none;
-  }
-
-  nav {
-    position: static;
-    transform: none;
-    width: auto;
-    padding: 0;
-  }
-
-  nav ul {
-    flex-direction: row;
-    gap: 2rem;
-  }
-
-  .overlay {
-    display: none;
-  }
-}
-
-.swiper {
-  width: 100%;
-  height: 100%;
-}
-
 .swiper-slide {
   text-align: start;
-  padding-left: 1rem;
+  // padding-left: 1rem;
   font-size: 18px;
   background: none;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  transition: transform 0.2s ease-in;
+
 }
 
 .mySwiper {
-  margin-top: 5rem;
-  padding-bottom: 3rem;
+  margin-top: 4rem;
+  padding-bottom: 2rem;
 
   h4 {
     text-align: start;
@@ -239,4 +216,58 @@ hr {
   width: 12rem;
   height: 100%;
   object-fit: cover;
+  border-radius: 15px;
+}
+
+.cart{
+  i{
+    color: white;
+    font-size: 1.5rem;
+  }
+}
+
+
+
+/* --- Versión escritorio --- */
+@media (min-width: 768px) {
+  .title{
+    margin-top: 2rem!important;
+  }
+
+  .mySwiper{
+    margin-top: 2rem!important;
+  }
+  .header {
+    padding-inline: 3rem;
+  }
+
+  .menu-btn {
+    display: none;
+  }
+
+  nav {
+    position: static;
+    transform: none;
+    width: auto;
+    padding: 0;
+  }
+
+  nav ul {
+    flex-direction: row;
+    gap: 2rem;
+    background-color: #111;
+  }
+
+  .overlay {
+    display: none;
+  }
+  
+  .mySwiper{
+    width: 40%;
+    margin: 0 auto;
+  }
+
+  .swiper-slide:hover{
+    transform: scale(1.1);
+  }
 }

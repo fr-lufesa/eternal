@@ -18,21 +18,23 @@
   </nav>
 
   <label for="menu-toggle" class="overlay"></label>
-  <app-cart></app-cart>
+  <a class="cart" routerLink="/cart">
+    <i class="fa-solid fa-bag-shopping"></i>
+  </a>
 </div>
 
-<div class="main" class="title" style="padding: 1rem">
+<div class="title" style="padding: 1rem">
   <h1 id="inicio">ETE<span class="reverse-letter">R</span>NAL</h1>
   <p>Crafted for the ones who rise above.</p>
   <div class="swiper mySwiper" #swiperRef>
-    <h4>Featured Collection</h4>
+    <!-- <h4>Featured Collection</h4> -->
     <div class="swiper-wrapper">
-      @for (item of items; track $index) {
-      <div class="swiper-slide" (click)="openDetail(item)">
+      @for (product of products; track $index) {
+      <div class="swiper-slide" (click)="openDetail(product)">
         <div class="slide-card">
-          <img [src]="item.img" alt="" />
-          <p>{{ item.name }}</p>
-          <span>{{ item.price | currency : "MXN" }}</span>
+          <img [src]="product.images[0].src" alt="" />
+          <p style="height: 2.5rem;">{{ product.title }}</p>
+          <span>{{ product.variants[0].price| currency : "MXN" }}</span>
         </div>
       </div>
       }
@@ -48,8 +50,13 @@
       <a href="">Returns</a>
     </div>
     <div class="social-media">
-      <i class="fa-brands fa-instagram"></i>
-      <i class="fa-brands fa-x-twitter"></i>
+      <a href="https://www.instagram.com/eternal.official.mx" target="_blank">
+        <i class="fa-brands fa-instagram"></i>
+      </a>
+      
+      <a href="https://www.tiktok.com/@eternal.official.mx?_r=1&_t=ZS-925JYkiX7nY" target="_blank">
+        <i class="fa-brands fa-tiktok"></i>
+      </a>
     </div>
     <p>© 2025 Eternal. All rights reserved.</p>
   </div>

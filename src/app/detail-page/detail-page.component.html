@@ -3,14 +3,16 @@
     <i class="fa-solid fa-arrow-left"></i>
   </div>
   <h2>ETERNAL</h2>
-  <app-cart></app-cart>
+  <a class="cart" routerLink="/cart">
+    <i class="fa-solid fa-bag-shopping"></i>
+  </a>
 </div>
-<img [src]="item.img" alt="" style="width: 100%;">
+<img [src]="product.images[0].src" alt="" style="width: 100%;">
 <div class="content">
-    <h1>{{ item.name }}</h1>
-    <p>{{ item.price | currency }}</p>
+    <h1>{{ product.title }}</h1>
+    <p>{{ product.variants[0].price | currency }}</p>
 
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum quod quia necessitatibus nisi, amet nostrum architecto harum similique tempore vero hic non dicta sequi numquam dolor aperiam magni labore pariatur!</p>
+    <p [innerHTML]="product.body_html"></p>
 
     <button>ADD TO BAG</button>
 </div>

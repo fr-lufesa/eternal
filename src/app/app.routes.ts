@@ -9,5 +9,9 @@ export const routes: Routes = [
     {
         path:'detail',
         loadComponent: () => import('./detail-page/detail-page.component') 
+    },
+    {
+        path:'cart',
+        loadComponent: () => import('./cart/cart.component')
     }
 ];
