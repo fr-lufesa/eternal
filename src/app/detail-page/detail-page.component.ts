@@ -19,7 +19,6 @@ export default class DetailPageComponent {
   ngOnInit() {
     const { product } = history.state;
     this.product = product;
-    // this.content.nativeElement.innerHTML = this.product.body_html;
   }
 
   goBack() {
