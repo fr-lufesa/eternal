@@ -3,7 +3,7 @@ name: Deploy Angular App (ETERNAL)  to VPS
 on:
   push:
     branches:
-      - master   # o master, lo que uses
+      - master 
 
 jobs:
   deploy:
