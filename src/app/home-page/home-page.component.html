@@ -29,7 +29,7 @@
   <div class="swiper mySwiper" #swiperRef>
     <!-- <h4>Featured Collection</h4> -->
     <div class="swiper-wrapper">
-      @for (product of products; track $index) {
+      @for (product of products(); track $index) {
       <div class="swiper-slide" (click)="openDetail(product)">
         <div class="slide-card">
           <img [src]="product.images[0].src" alt="" />

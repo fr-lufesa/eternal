@@ -21,7 +21,7 @@ export class HomePageComponent implements AfterViewInit {
 
   swiper!: Swiper;
 
-  products: Product[] = this.productsService.products();
+  products = this.productsService.products;
 
   options = ['Inicio', 'Servicios', 'Nosotros', 'Contacto'];
 

@@ -13,7 +13,7 @@
   letter-spacing: 2px;
 }
 
-#inicio{
+#inicio {
   font-size: 4rem;
 }
 
@@ -179,7 +179,6 @@ hr {
   align-items: center;
 
   transition: transform 0.2s ease-in;
-
 }
 
 .mySwiper {
@@ -190,7 +189,6 @@ hr {
     text-align: start;
     margin-bottom: 1rem;
   }
-
 }
 // .mySwiper{
 //   .swiper-pagination{
@@ -217,23 +215,21 @@ hr {
   border-radius: 15px;
 }
 
-.cart{
-  i{
+.cart {
+  i {
     color: white;
     font-size: 1.5rem;
   }
 }
 
-
-
 /* --- Versión escritorio --- */
 @media (min-width: 768px) {
-  .title{
-    margin-top: 2rem!important;
+  .title {
+    margin-top: 2rem !important;
   }
 
-  .mySwiper{
-    margin-top: 2rem!important;
+  .mySwiper {
+    margin-top: 2rem !important;
   }
   .header {
     padding-inline: 3rem;
@@ -259,13 +255,15 @@ hr {
   .overlay {
     display: none;
   }
-  
-  .mySwiper{
+
+  .mySwiper {
     width: 40%;
     margin: 0 auto;
   }
 
-  .swiper-slide:hover{
-    transform: scale(1.1);
+  .swiper-slide {
+    img:hover {
+      transform: scale(1.01);
+    }
   }
 }
