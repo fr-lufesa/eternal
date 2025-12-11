@@ -49,6 +49,7 @@ export default class DetailPageComponent {
   addToBag(){
     let cartItem: CartItem = {
       id: this.product.id,
+      variantId: this.product.variants[0].admin_graphql_api_id,
       imgSrc: this.product.image.src,
       name: this.product.title,
       price: + this.product.variants[0].price,

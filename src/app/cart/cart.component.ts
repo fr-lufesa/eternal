@@ -1,17 +1,18 @@
-import { Component, computed, inject } from '@angular/core';
-import { CartItem, CartService } from './services/cart.service';
-import { CurrencyPipe, Location, NgClass } from '@angular/common';
+import { Component, computed, inject } from "@angular/core";
+import { CartItem, CartService } from "./services/cart.service";
+import { CurrencyPipe, Location, NgClass } from "@angular/common";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
-  selector: 'app-cart',
+  selector: "app-cart",
   imports: [CurrencyPipe, NgClass],
-  templateUrl: './cart.component.html',
-  styleUrl: './cart.component.scss'
+  templateUrl: "./cart.component.html",
+  styleUrl: "./cart.component.scss",
 })
 export default class CartComponent {
-
   private readonly cartService = inject(CartService);
   private readonly location = inject(Location);
+  private readonly http = inject(HttpClient);
 
   // Usamos directamente las signals/computed del servicio
   readonly items = this.cartService.items;
@@ -20,13 +21,12 @@ export default class CartComponent {
 
   // Total con envío: si hay más de 1 producto, envío gratis, si no, +150
   readonly total = computed(() =>
-    this.totalItems() > 1
-      ? this.totalAmount()
-      : this.totalAmount() + 150
+    this.totalItems() > 1 ? this.totalAmount() : this.totalAmount() + 150
   );
 
   add(item: CartItem) {
     this.cartService.increaseQty(item.id);
+    console.table(this.items());
   }
 
   sub(item: CartItem) {
@@ -42,4 +42,24 @@ export default class CartComponent {
     this.location.back();
   }
 
+  pay() {
+    console.log("Entra")
+    const payload = this.items().map((item) => ({
+      variant_id: item.variantId,
+      quantity: item.qty,
+    }));
+
+    console.log("PAYLOAD", payload)
+
+    this.http.post<{ checkout_url: string }>(
+      'http://localhost:8000/eternal/create_checkout',
+      payload
+    ).subscribe(res => {
+      console.log('Respuesta create_checkout:', res);
+      if (res.checkout_url) {
+        window.location.href = res.checkout_url;
+      }
+    });
+    
+  }
 }

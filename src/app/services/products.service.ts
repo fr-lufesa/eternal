@@ -24,11 +24,10 @@ export class ProductsService {
 
     this.http.get<ProductsResponse>(url).subscribe({
       next: (resp) => {
-        this._products.set(resp.products);
-        console.table(resp.products);
+        this._products.set(resp.products);        
       },
       error: (err) => {
-        console.log("Error", err);
+        // console.log("Error", err);
       },
     });
   }

@@ -2,6 +2,7 @@ import { Injectable, signal, computed, effect } from "@angular/core";
 
 export interface CartItem {
   id: number;
+  variantId?: string;  // "gid://shopify/ProductVariant/123456789"
   imgSrc: string;
   name: string;
   price: number;
