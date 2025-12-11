@@ -52,7 +52,7 @@ export default class CartComponent {
     console.log("PAYLOAD", payload)
 
     this.http.post<{ checkout_url: string }>(
-      'http://localhost:8000/eternal/create_checkout',
+      'https://api.gpolufesa.com/eternal/create_checkout',
       payload
     ).subscribe(res => {
       console.log('Respuesta create_checkout:', res);
