@@ -1,42 +1,50 @@
-*{
-    color: white;
+* {
+  color: white;
 }
-.header{
-    display: flex;
-    justify-content: space-between;
-    padding: 0 1rem;
-    align-items: center;
-    height: 10vh;
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  align-items: center;
+  height: 10vh;
 
-    position: sticky;
-    top: 0;
-    z-index: 999999999;
-    background-color: black;
-}
-
-.content{
-    width: 90%;
-    margin: 1rem auto;
+  position: sticky;
+  top: 0;
+  z-index: 999999999;
+  background-color: black;
 }
 
-.cart{
-    color: white;
-    
+.content {
+  width: 90%;
+  margin: 1rem auto;
 }
-.logo{
-    font-family: "Anaktoria", serif;
 
+.cart {
+  color: white;
+}
+.logo {
+  font-family: "Anaktoria", serif;
 }
 .reverse-letter {
-    display: inline-block;
-    transform: rotatey(180deg);
-  }
+  display: inline-block;
+  transform: rotatey(180deg);
+}
 
-  button{
-    transition: transform .4s ease-in-out;
-  }
-  
+button {
+  transition: transform 0.4s ease-in-out;
+}
 
-  button:active{
-    transform: scale(.9);
+button:active {
+  transform: scale(0.9);
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 50%;
+    .swiper {
+      width: 30%;
+    }
+
+    margin: 0 auto;
   }
+}

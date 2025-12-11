@@ -1,25 +1,27 @@
-<div class="header">
-  <div class="back-button" (click)="goBack()">
-    <i class="fa-solid fa-arrow-left" style="font-size: 1.5rem;"></i>
-  </div>
-  <h2 class="logo">ETE<span class="reverse-letter">R</span>NAL</h2>
-  <app-cart-icon></app-cart-icon>
-</div>
-
-<div class="swiper mySwiper" #swiperRef>
-  <div class="swiper-wrapper">
-    @for (img of product.images; track $index) {
-    <div class="swiper-slide" >
-      <img [src]="img.src" alt="" style="width: 100%;" />      
+<div class="container">
+  <div class="header">
+    <div class="back-button" (click)="goBack()">
+      <i class="fa-solid fa-arrow-left" style="font-size: 1.5rem"></i>
     </div>
-    }
+    <h2 class="logo">ETE<span class="reverse-letter">R</span>NAL</h2>
+    <app-cart-icon></app-cart-icon>
   </div>
-  <div class="swiper-pagination"></div>
-</div>
 
-<div class="content">
-  <h1>{{ product.title }}</h1>
-  <h2 class="mt-1">{{ product.variants[0].price | currency }}</h2>
-  <p [innerHTML]="product.body_html" style="margin-top: 1rem"></p>
-  <button  (click)="addToBag()">ADD TO BAG</button>
+  <div class="swiper mySwiper" #swiperRef>
+    <div class="swiper-wrapper">
+      @for (img of product.images; track $index) {
+      <div class="swiper-slide">
+        <img [src]="img.src" alt="" style="width: 100%" />
+      </div>
+      }
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+
+  <div class="content">
+    <h1>{{ product.title }}</h1>
+    <h2 class="mt-1">{{ product.variants[0].price | currency }}</h2>
+    <p [innerHTML]="product.body_html" style="margin-top: 1rem"></p>
+    <button (click)="addToBag()">ADD TO BAG</button>
+  </div>
 </div>
