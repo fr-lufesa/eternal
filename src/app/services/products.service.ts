@@ -19,7 +19,8 @@ export class ProductsService {
   }
 
   getProducts() {
-    const url = "http://localhost:8000/eternal/get_products";
+    //TODO: CREATE ENVIRONMENTS FOR DEV AND PROD
+    const url = "https://api.gpolufesa.com/eternal/get_products";
 
     this.http.get<ProductsResponse>(url).subscribe({
       next: (resp) => {
