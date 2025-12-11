@@ -18,9 +18,7 @@
   </nav>
 
   <label for="menu-toggle" class="overlay"></label>
-  <a class="cart" routerLink="/cart">
-    <i class="fa-solid fa-bag-shopping"></i>
-  </a>
+  <app-cart-icon></app-cart-icon>
 </div>
 
 <div class="title" style="padding: 1rem">
@@ -33,8 +31,8 @@
       <div class="swiper-slide" (click)="openDetail(product)">
         <div class="slide-card">
           <img [src]="product.images[0].src" alt="" />
-          <p style="height: 2.5rem;">{{ product.title }}</p>
-          <span>{{ product.variants[0].price| currency : "MXN" }}</span>
+          <p style="height: 2.5rem">{{ product.title }}</p>
+          <span>{{ product.variants[0].price | currency : "MXN" }}</span>
         </div>
       </div>
       }
@@ -53,8 +51,11 @@
       <a href="https://www.instagram.com/eternal.official.mx" target="_blank">
         <i class="fa-brands fa-instagram"></i>
       </a>
-      
-      <a href="https://www.tiktok.com/@eternal.official.mx?_r=1&_t=ZS-925JYkiX7nY" target="_blank">
+
+      <a
+        href="https://www.tiktok.com/@eternal.official.mx?_r=1&_t=ZS-925JYkiX7nY"
+        target="_blank"
+      >
         <i class="fa-brands fa-tiktok"></i>
       </a>
     </div>

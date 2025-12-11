@@ -1,15 +1,16 @@
 import { AfterViewInit, Component, ElementRef, inject, ViewChild } from '@angular/core';
-import { Product, ProductsResponse } from './models/item.model';
+import { Product } from './models/item.model';
 import { CurrencyPipe } from '@angular/common';
 
 import Swiper from 'swiper';
 import { Pagination } from 'swiper/modules';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 import { ProductsService } from '../services/products.service';
+import { CartIconComponent } from "../cart/components/cart-icon/cart-icon.component";
 
 @Component({
   selector: 'app-home-page',
-  imports: [CurrencyPipe, RouterLink],
+  imports: [CurrencyPipe, CartIconComponent],
   standalone: true,
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',

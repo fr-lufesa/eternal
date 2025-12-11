@@ -1,7 +1,8 @@
 import { Injectable, signal, computed, effect } from "@angular/core";
 
 export interface CartItem {
-  id: string;
+  id: number;
+  imgSrc: string;
   name: string;
   price: number;
   qty: number;
@@ -13,10 +14,8 @@ const CART_KEY = 'cart_items';
   providedIn: "root",
 })
 export class CartService {
-  // Inicializamos leyendo de localStorage
   private _items = signal<CartItem[]>(this.loadInitialItems());
 
-  // Sólo lectura hacia afuera
   readonly items = computed(() => this._items());
 
   readonly totalItems = computed(() =>
@@ -28,7 +27,6 @@ export class CartService {
   );
 
   constructor() {
-    // Efecto: cada que cambie el carrito, lo persistimos en localStorage
     effect(() => {
       const items = this._items();
       try {
@@ -54,7 +52,7 @@ export class CartService {
     });
   }
 
-  removeItem(id: string) {
+  removeItem(id: number) {
     this._items.update((items) => items.filter((i) => i.id !== id));
   }
 
@@ -62,11 +60,33 @@ export class CartService {
     this._items.set([]);
   }
 
-  // ------- helpers privados -------
+  /** 🔼 Sumar 1 (o n) a la cantidad */
+  increaseQty(id: number, step: number = 1) {
+    this._items.update(items =>
+      items.map(item =>
+        item.id === id
+          ? { ...item, qty: item.qty + step }
+          : item
+      )
+    );
+  }
 
+  /** 🔽 Restar 1; si llega a 0, se elimina del carrito */
+  decreaseQty(id: number, step: number = 1) {
+    this._items.update(items =>
+      items
+        .map(item =>
+          item.id === id
+            ? { ...item, qty: item.qty - step }
+            : item
+        )
+        .filter(item => item.qty > 0) // si queda en 0 o menos, lo quitamos
+    );
+  }
+
+  // ------- helpers privados -------
   private loadInitialItems(): CartItem[] {
     if (typeof window === 'undefined') {
-      // Por si algún día usas SSR
       return [];
     }
 
@@ -74,7 +94,6 @@ export class CartService {
       const raw = localStorage.getItem(CART_KEY);
       if (!raw) return [];
       const parsed = JSON.parse(raw);
-      // Validación ligera por si hay basura
       if (!Array.isArray(parsed)) return [];
       return parsed;
     } catch (e) {

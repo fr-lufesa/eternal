@@ -3,10 +3,12 @@ import { Product } from "../home-page/models/item.model";
 import { CurrencyPipe, Location } from "@angular/common";
 import { Swiper } from "swiper";
 import { Pagination } from "swiper/modules";
+import { CartItem, CartService } from "../cart/services/cart.service";
+import { CartIconComponent } from "../cart/components/cart-icon/cart-icon.component";
 
 @Component({
   selector: "app-detail-page",
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, CartIconComponent],
   templateUrl: "./detail-page.component.html",
   styleUrl: "./detail-page.component.scss",
 })
@@ -21,6 +23,7 @@ export default class DetailPageComponent {
   product!: Product;
 
   private location = inject(Location);
+  private cartService = inject(CartService);
 
   ngOnInit() {
     const { product } = history.state;
@@ -41,5 +44,18 @@ export default class DetailPageComponent {
       //   clickable: true,
       // },
     });
+  }
+
+  addToBag(){
+    let cartItem: CartItem = {
+      id: this.product.id,
+      imgSrc: this.product.image.src,
+      name: this.product.title,
+      price: + this.product.variants[0].price,
+      qty: 1      
+    } 
+
+    this.cartService.addItem(cartItem);    
+
   }
 }

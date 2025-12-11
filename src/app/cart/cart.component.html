@@ -1,0 +1,54 @@
+<div class="header">
+  <div class="back-button" (click)="goBack()">
+    <i class="fa-solid fa-arrow-left" style="font-size: 1.5rem;"></i>
+  </div>
+  <h2>CART</h2>
+  <a> </a>
+</div>
+
+@for (item of items(); track item.id) {
+  <hr size="2px" color="#121212" style="margin-top: 1rem" />
+
+  <div class="card mt-1">
+    <img [src]="item.imgSrc" alt="" />
+    <div class="card-text">
+      <p class="name">{{ item.name }}</p>
+      <p class="qty mt-1">
+        <i
+          class="fa-solid"
+          [ngClass]="item.qty === 1 ? 'fa-trash-can' : 'fa-minus'"
+          (click)="sub(item)"
+        ></i>
+        {{ item.qty }}
+        <i class="fa-solid fa-plus" (click)="add(item)"></i>
+      </p>
+    </div>
+
+    <p class="price mt-1">{{ item.price | currency }}</p>
+  </div>
+  <hr size="2px" color="#121212" style="margin-top: 1rem" />
+}@empty{
+  <p style="text-align: center">No has añadido ningún artículo</p>
+}
+
+<footer>
+  <div class="card-footer">
+    <div class="labels">
+      <p>Producto</p>
+      <p>Envío</p>
+      <h3>TOTAL</h3>
+    </div>
+    <div class="cost">
+      <p>{{ totalAmount() | currency:'MXN' }}</p>
+
+      @if ( totalItems() > 1 ) {
+        <p style="color: green; font-weight: bold">Gratis</p>
+      } @else {
+        <p>{{ 150 | currency:'MXN' }}</p>
+      }
+
+      <h3>{{ total() | currency:'MXN' }}</h3>
+    </div>
+  </div>
+  <button class="btn">PAGAR</button>
+</footer>
