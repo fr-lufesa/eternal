@@ -19,6 +19,7 @@ export default class CartComponent {
   readonly items = this.cartService.items;
   readonly totalAmount = this.cartService.totalAmount;
   readonly totalItems = this.cartService.totalItems;
+  loading = false;
 
   // Total con envío: si hay más de 1 producto, envío gratis, si no, +150
   readonly total = computed(() =>
@@ -44,7 +45,8 @@ export default class CartComponent {
   }
 
   pay() {
-    console.log("Entra")
+    this.loading = true;
+
     const payload = this.items().map((item) => ({
       variant_id: item.variantId,
       quantity: item.qty,
@@ -55,10 +57,17 @@ export default class CartComponent {
     this.http.post<{ checkout_url: string }>(
       `${environment.apiUrl}/eternal/create_checkout`,
       payload
-    ).subscribe(res => {
-      console.log('Respuesta create_checkout:', res);
-      if (res.checkout_url) {
-        window.location.href = res.checkout_url;
+    ).subscribe({
+      next: (res) => {
+        console.log('Respuesta create_checkout:', res);
+        this.loading = false;
+        if (res.checkout_url) {
+          window.location.href = res.checkout_url;
+          this.cartService.clear();
+        }
+      },
+      error: () => {
+        console.log("Error, intenta de nuevo!");
       }
     });
     

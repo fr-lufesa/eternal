@@ -50,5 +50,11 @@
       <h3>{{ total() | currency:'MXN' }}</h3>
     </div>
   </div>
-  <button class="btn" (click)="pay()">PAGAR</button>
+  <button [disabled]="loading" class="btn" (click)="pay()">
+    @if (!loading) {
+      <span>Pagar</span>    
+    }@else{
+      <div class="btn-spinner"></div>
+    }
+  </button>
 </footer>
