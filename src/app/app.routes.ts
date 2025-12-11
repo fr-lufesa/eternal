@@ -13,5 +13,9 @@ export const routes: Routes = [
     {
         path:'cart',
         loadComponent: () => import('./cart/cart.component')
+    },
+    {
+        path: '**',
+        redirectTo: ''
     }
 ];
