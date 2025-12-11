@@ -16,8 +16,8 @@ yarn-debug.log*
 yarn-error.log*
 
 # --- Environment files ---
-src/environments/*.ts
-!src/environments/environment.example.ts
+# src/environments/*.ts
+# !src/environments/environment.example.ts
 
 # --- IDEs y editores ---
 # VSCode
