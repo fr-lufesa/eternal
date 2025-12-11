@@ -11,7 +11,7 @@
     <ul>
       @for (option of options; track $index) {
       <li>
-        <a [href]="'#' + option"> {{ option }}</a>
+        <a [routerLink]="option.path"> {{ option.name }}</a>
       </li>
       }
     </ul>
@@ -21,7 +21,7 @@
   <app-cart-icon></app-cart-icon>
 </div>
 
-<div class="title" style="padding: 1rem">
+<div class="title" style="padding: 0 1rem">
   <h1 id="inicio">ETE<span class="reverse-letter">R</span>NAL</h1>
   <p>For those who know</p>
   <div class="swiper mySwiper" #swiperRef>
@@ -40,13 +40,13 @@
     <div class="swiper-pagination"></div>
   </div>
 
-  <hr size="1px" color="#121212" />
-  <div class="footer">
-    <div class="nav">
+  <!-- <hr size="1px" color="#121212" /> -->
+  <div class="footer mt-1">
+    <!-- <div class="nav">
       <a href="">Contact</a>
       <a href="">Shipping</a>
       <a href="">Returns</a>
-    </div>
+    </div> -->
     <div class="social-media">
       <a href="https://www.instagram.com/eternal.official.mx" target="_blank">
         <i class="fa-brands fa-instagram"></i>
