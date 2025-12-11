@@ -2,6 +2,7 @@ import { Component, computed, inject } from "@angular/core";
 import { CartItem, CartService } from "./services/cart.service";
 import { CurrencyPipe, Location, NgClass } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
+import { environment } from "../../environments/environment";
 
 @Component({
   selector: "app-cart",
@@ -52,7 +53,7 @@ export default class CartComponent {
     console.log("PAYLOAD", payload)
 
     this.http.post<{ checkout_url: string }>(
-      'https://api.gpolufesa.com/eternal/create_checkout',
+      `${environment.apiUrl}/eternal/create_checkout`,
       payload
     ).subscribe(res => {
       console.log('Respuesta create_checkout:', res);

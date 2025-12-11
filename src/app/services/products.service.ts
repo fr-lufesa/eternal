@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { computed, inject, Injectable, signal } from "@angular/core";
 import { Product, ProductsResponse } from "../home-page/models/item.model";
+import { environment } from "../../environments/environment";
 
 @Injectable({
   providedIn: "root",
@@ -19,8 +20,7 @@ export class ProductsService {
   }
 
   getProducts() {
-    //TODO: CREATE ENVIRONMENTS FOR DEV AND PROD
-    const url = "https://api.gpolufesa.com/eternal/get_products";
+    const url = `${environment.apiUrl}/eternal/get_products`;
 
     this.http.get<ProductsResponse>(url).subscribe({
       next: (resp) => {
