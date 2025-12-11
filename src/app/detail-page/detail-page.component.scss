@@ -31,4 +31,12 @@
     display: inline-block;
     transform: rotatey(180deg);
   }
+
+  button{
+    transition: transform .4s ease-in-out;
+  }
   
+
+  button:active{
+    transform: scale(.9);
+  }
