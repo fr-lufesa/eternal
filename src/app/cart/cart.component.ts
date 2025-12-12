@@ -20,10 +20,10 @@ export default class CartComponent {
   readonly totalAmount = this.cartService.totalAmount;
   readonly totalItems = this.cartService.totalItems;
   loading = false;
-
-  // Total con envío: si hay más de 1 producto, envío gratis, si no, +150
+  shipping = 100;
+  // Total con envío: si hay más de 1 producto, envío gratis, si no, + shipping
   readonly total = computed(() =>
-    this.totalItems() > 1 ? this.totalAmount() : this.totalAmount() + 150
+    this.totalItems() > 1 ? this.totalAmount() : this.totalAmount() + this.shipping
   );
 
   add(item: CartItem) {

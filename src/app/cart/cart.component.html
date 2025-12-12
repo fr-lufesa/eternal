@@ -44,7 +44,7 @@
       @if ( totalItems() > 1 ) {
         <p style="color: green; font-weight: bold">Gratis</p>
       } @else {
-        <p>{{ 150 | currency:'MXN' }}</p>
+        <p>{{ shipping | currency:'MXN' }}</p>
       }
 
       <h3>{{ total() | currency:'MXN' }}</h3>
